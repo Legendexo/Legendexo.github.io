@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "Wave-gui: Emscripten port"
-date:   2018-11-17 17:00:00 +0200
+date:   2019-11-17 17:00:00 +0200
 htmlarr:
 - wave-gui.html
 categories: jekyll update
 ---
 
-Decided to port the [wave-gui](https://github.com/ggerganov/wave-gui) tool in JS with Emscripten.  The demo below uses
+Decided to port the [wave-gui](https://github.com/legendexo/wave-gui) tool in JS with Emscripten.  The demo below uses
 GLFW3, SDL2 and pthreads and for now it should be possible to run it only in Chrome, because as far as I understand,
 other browsers have the pthread related stuff disabled due to security concerns (Spectre, etc.). Hopefully this gets
 fixed in the future.
