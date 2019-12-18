@@ -1,0 +1,77 @@
+[<i><b>Updated:</b> 6 Oct 2018</i>]
+
+<br>
+
+Choose the Github branch you want to try out:
+<select name='branch' id="branch" onchange="document.location.href =  window.location.href.split('?')[0] + '?branch=' + this.value">
+	<option value='master'>master</option>
+	<option value='docking'>docking</option>
+</select>
+
+<script type="text/javascript">
+	document.getElementById('branch').value = (location.href.indexOf("branch=") > 0 ? location.href.substr(location.href.indexOf("branch=") + ("branch=").length, 100) : "master");
+</script>
+
+<br><br>
+
+<div id="main-container">
+
+    <div class="emscripten_border">
+        <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    </div>
+
+    <br><hr><br>
+
+    <p>Standard output:</p>
+    <textarea id="output" rows="8"></textarea>
+
+    <div class="emscripten">
+        <progress value="0" max="100" id="progress" hidden=1></progress>
+    </div>
+
+    <a href="https://github.com/ggerganov/imgui-em">Github</a>
+</div>
+
+</div>
+
+<script type='text/javascript'>
+    var Module = {
+        doNotCaptureKeyboard: true,
+        preRun: [ (function() {
+        }) ],
+        postRun: [ (function() {
+            Module.cwrap('setArticleWidth', '', ['number'])(document.getElementById('main-container').offsetWidth);
+        }) ],
+        print: (function() {
+            var element = document.getElementById('output');
+            if (element) element.value = ''; // clear browser cache
+            return function(text) {
+                if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                console.log(text);
+                if (element) {
+                    element.value += text + "\n";
+                    element.scrollTop = element.scrollHeight; // focus on bottom
+                }
+            };
+        })(),
+        canvas: (function() {
+            var canvas = document.getElementById('canvas');
+
+            canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+
+            return canvas;
+        })(),
+        printErr: function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            console.error(text);
+        },
+        totalDependencies: 0,
+    };
+</script>
+
+<base href="/scripts/">
+<script>
+    var script = document.createElement('script');
+    script.src = "imgui-" + (location.href.indexOf("branch=") > 0 ? location.href.substr(location.href.indexOf("branch=") + ("branch=").length, 100) : "master") + ".js";
+    document.body.appendChild(script);
+</script>
