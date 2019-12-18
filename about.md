@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-[https://ggerganov.com](https://ggerganov.com/)
+[https://legendexo.com](https://legendexo.com/)
 
 [https://github.com/ggerganov](https://github.com/ggerganov)
 
-[https://www.youtube.com/user/ggerganov](https://www.youtube.com/user/ggerganov)
+[https://www.youtube.com/user/turalalieyv](https://www.youtube.com/user/turalaliyev)
